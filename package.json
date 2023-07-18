@@ -1,0 +1,50 @@
+{
+  "name": "display",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "prettier": "prettier --write \"src/**/*.{ts,js,html,scss}\""
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^15.2.0",
+    "@angular/common": "^15.2.0",
+    "@angular/compiler": "^15.2.0",
+    "@angular/core": "^15.2.0",
+    "@angular/forms": "^15.2.0",
+    "@angular/platform-browser": "^15.2.0",
+    "@angular/platform-browser-dynamic": "^15.2.0",
+    "@angular/router": "^15.2.0",
+    "dat.gui": "^0.7.9",
+    "date-fns": "^2.30.0",
+    "file-saver": "^2.0.5",
+    "jsroot": "^7.3.1",
+    "phoenix-event-display": "^2.14.1",
+    "phoenix-ui-components": "^2.14.1",
+    "rxjs": "~7.8.0",
+    "three": "^0.152.2",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.12.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^15.2.7",
+    "@angular/cli": "~15.2.7",
+    "@angular/compiler-cli": "^15.2.0",
+    "@types/dat.gui": "^0.7.10",
+    "@types/file-saver": "^2.0.5",
+    "@types/jasmine": "~4.3.0",
+    "@types/three": "^0.152.0",
+    "jasmine-core": "~4.5.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.0.0",
+    "prettier": "^2.8.8",
+    "typescript": "~4.9.4"
+  }
+}
