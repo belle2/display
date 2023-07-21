@@ -11,11 +11,6 @@ class TEventSelector extends TSelector {
         super();
         this.branch = branch;
         this.addBranch(branch);
-        // if (this.branch === "EventMetaData") {
-        //     this.branchData = {}
-        // } else {
-        //     this.branchData = [];
-        // }
         this.branchData = [];
     }
 
@@ -62,6 +57,7 @@ class TEventSelector extends TSelector {
             case 2112:
             case -2112:
             case 130:
+            case 111:
                 return 0;
             case 321:
             case 2212:
@@ -70,7 +66,6 @@ class TEventSelector extends TSelector {
             case -11:
             case -13:
             case 211:
-            case 111:
                 return 1;
             case -321:
             case -2212:
@@ -86,120 +81,115 @@ class TEventSelector extends TSelector {
 
     getMCParticles(data: any) {
         return [
-            ...data
-                .filter(particle => particle['m_seenIn']['m_bits'])
-                .map((particle: any) => {
-                    const charge = this.getParticleCharge(particle['m_pdg']);
-                    const x0 = particle['m_productionVertex_x'];
-                    const y0 = particle['m_productionVertex_y'];
-                    const z0 = particle['m_productionVertex_z'];
+            ...data.map((particle: any, index: number) => {
+                const charge = this.getParticleCharge(particle['m_pdg']);
+                const x0 = particle['m_productionVertex_x'];
+                const y0 = particle['m_productionVertex_y'];
+                const z0 = particle['m_productionVertex_z'];
 
-                    const xe = particle['m_decayVertex_x'];
-                    const ye = particle['m_decayVertex_y'];
-                    const ze = particle['m_decayVertex_z'];
+                const xe = particle['m_decayVertex_x'];
+                const ye = particle['m_decayVertex_y'];
+                const ze = particle['m_decayVertex_z'];
 
-                    const px = particle['m_momentum_x'];
-                    const py = particle['m_momentum_y'];
-                    const pz = particle['m_momentum_z'];
+                const px = particle['m_momentum_x'];
+                const py = particle['m_momentum_y'];
+                const pz = particle['m_momentum_z'];
 
-                    let points: [number, number, number][] = [];
-                    const rho = Math.sqrt(px * px + py * py) / 0.0045; // approximation and only for charge != 0
-                    const tanLambda = pz / Math.sqrt(px * px + py * py);
-                    const phi0 = Math.atan(py / px);
+                let points: [number, number, number][] = [];
+                const rho = Math.sqrt(px * px + py * py) / 0.0045; // approximation and only for charge != 0
+                const tanLambda = pz / Math.sqrt(px * px + py * py);
+                const phi0 = Math.atan(py / px);
 
-                    if (charge === 0) {
-                        if (
-                            Math.sqrt(xe * xe + ye * ye) < 200 &&
-                            ze < 280 &&
-                            ze > -150
-                        ) {
-                            points = [
-                                [x0, y0, z0],
-                                [xe, ye, ze]
-                            ];
-                        } else {
-                            const deltaX = Array.from(
-                                { length: 300 },
-                                (_, i) => 0.5 + 0.5 * i
-                            );
-                            const deltaY = deltaX.map(
-                                deltaX => (deltaX * py) / px
-                            );
-                            const deltaZ = deltaX.map(
-                                (deltaX, i) =>
-                                    Math.sqrt(
-                                        deltaX * deltaX + deltaY[i] * deltaY[i]
-                                    ) * tanLambda
-                            );
-
-                            points.push([x0, y0, z0]);
-
-                            for (let i = 0; i < deltaX.length; i++) {
-                                const x = x0 + deltaX[i];
-                                const y = y0 + deltaY[i];
-                                const z = z0 + deltaZ[i];
-                                points.push([x, y, z]);
-
-                                if (
-                                    Math.sqrt(x * x + y * y) > 200 ||
-                                    z > 280 ||
-                                    z < -150
-                                ) {
-                                    break;
-                                }
-                            }
-                        }
+                if (charge === 0) {
+                    if (
+                        Math.sqrt(xe * xe + ye * ye) < 200 &&
+                        ze < 280 &&
+                        ze > -150
+                    ) {
+                        points = [
+                            [x0, y0, z0],
+                            [xe, ye, ze]
+                        ];
                     } else {
-                        const xa = x0 + rho * Math.cos(phi0 - Math.PI / 2);
-                        const ya = y0 + rho * Math.sin(phi0 - Math.PI / 2);
-                        const phis = Array.from(
-                            {
-                                length:
-                                    Math.floor((Math.PI - 0.015) / 0.015) + 1
-                            },
-                            (_, i) => 0.015 + 0.015 * i
+                        const deltaX = Array.from(
+                            { length: 300 },
+                            (_, i) => 0.5 + 0.5 * i
+                        );
+                        const deltaY = deltaX.map(deltaX => (deltaX * py) / px);
+                        const deltaZ = deltaX.map(
+                            (deltaX, i) =>
+                                Math.sqrt(
+                                    deltaX * deltaX + deltaY[i] * deltaY[i]
+                                ) * tanLambda
                         );
 
                         points.push([x0, y0, z0]);
-                        for (const phi of phis) {
-                            const x =
-                                xa -
-                                rho *
-                                    Math.cos(phi0 - Math.PI / 2 - charge * phi); //opposite with Python
-                            const y =
-                                ya -
-                                rho *
-                                    Math.sin(phi0 - Math.PI / 2 - charge * phi);
-                            const z = z0 + Math.abs(rho) * tanLambda * phi;
+
+                        for (let i = 0; i < deltaX.length; i++) {
+                            const x = x0 + deltaX[i];
+                            const y = y0 + deltaY[i];
+                            const z = z0 + deltaZ[i];
                             points.push([x, y, z]);
 
                             if (
-                                Math.sqrt(x * x + y * y) > 150 ||
-                                z > 300 ||
-                                z < -200
+                                Math.sqrt(x * x + y * y) > 200 ||
+                                z > 280 ||
+                                z < -150
                             ) {
                                 break;
                             }
                         }
                     }
+                } else {
+                    const xa = x0 + rho * Math.cos(phi0 - Math.PI / 2);
+                    const ya = y0 + rho * Math.sin(phi0 - Math.PI / 2);
+                    const phis = Array.from(
+                        {
+                            length: Math.floor((Math.PI - 0.015) / 0.015) + 1
+                        },
+                        (_, i) => 0.015 + 0.015 * i
+                    );
 
-                    return {
-                        pos: points,
-                        PDG: particle['m_pdg'],
-                        charge: charge,
-                        momentum_x: px,
-                        momentum_y: py,
-                        momentum_z: pz,
-                        energy: particle['m_energy'],
-                        seen: `${particle['m_seenIn']['m_bits']}`
-                    };
-                })
+                    points.push([x0, y0, z0]);
+                    for (const phi of phis) {
+                        const x =
+                            xa -
+                            rho * Math.cos(phi0 - Math.PI / 2 - charge * phi); //opposite with Python
+                        const y =
+                            ya -
+                            rho * Math.sin(phi0 - Math.PI / 2 - charge * phi);
+                        const z = z0 + Math.abs(rho) * tanLambda * phi;
+                        points.push([x, y, z]);
+
+                        if (
+                            Math.sqrt(x * x + y * y) > 150 ||
+                            z > 300 ||
+                            z < -200
+                        ) {
+                            break;
+                        }
+                    }
+                }
+
+                return {
+                    index,
+                    pos: points,
+                    PDG: particle['m_pdg'],
+                    charge: charge,
+                    momentum_x: px,
+                    momentum_y: py,
+                    momentum_z: pz,
+                    energy: particle['m_energy'],
+                    seen: `${particle['m_seenIn']['m_bits']}`
+                };
+            })
         ];
     }
 
     getTracks(data: any) {
         return [
-            ...data.map(track => ({
+            ...data.map((track: any, index: number) => ({
+                index,
                 trackFitIndex: track['m_trackFitIndices'].find(i => i >= 0)
             }))
         ];
@@ -207,7 +197,7 @@ class TEventSelector extends TSelector {
 
     getTrackFitResults(data: any) {
         return [
-            ...data.map(track => ({
+            ...data.map((track: any) => ({
                 d0: track['m_tau'][0],
                 phi0: track['m_tau'][1],
                 omega: track['m_tau'][2],
@@ -231,33 +221,21 @@ class TEventSelector extends TSelector {
         return tracksToPIDMap;
     }
 
+    getTracksToMCParticles(data: any) {
+        const elementData: any = data['m_elements'];
+        const tracksToMCParticleMap: any = {};
+        for (let i = 0; i < elementData.length; i++) {
+            tracksToMCParticleMap[elementData[i]['m_from']] =
+                elementData[i]['m_to'][0];
+        }
+        return tracksToMCParticleMap;
+    }
+
     getPIDLikelihoods(data: any) {
         // [<type: e->, <type: mu->, <type: pi+>, <type: K+>, <type: p+>, <type: deuteron>]
         const stableParticles = ['e-', 'mu-', 'pi+', 'K+', 'p+', 'deuteron'];
         // <set: SVD,CDC,TOP,ARICH,ECL,KLM>
         const detectorSet = ['SVD', 'CDC', 'TOP', 'ARICH', 'ECL', 'KLM'];
-        // const printProb = (prob: number) => {
-        //     return `${prob.toFixed(4)}`;
-        // };
-        // return [
-        //     ...data.map((info: any) => {
-        //         const logL = info['m_logl'];
-        //         const PID: any = {};
-        //         for (let i = 0; i < detectorSet.length; i++) {
-        //             if (!logL[i].every((num: number) => num === 0)) {
-        //                 PID[detectorSet[i]] = {
-        //                     [stableParticles[0]]: printProb(logL[i][0]),
-        //                     [stableParticles[1]]: printProb(logL[i][1]),
-        //                     [stableParticles[2]]: printProb(logL[i][2]),
-        //                     [stableParticles[3]]: printProb(logL[i][3]),
-        //                     [stableParticles[4]]: printProb(logL[i][4]),
-        //                     [stableParticles[5]]: printProb(logL[i][5])
-        //                 };
-        //             }
-        //         }
-        //         return PID;
-        //     })
-        // ];
         return [
             ...data.map((info: any) => {
                 const logl = info['m_logl'];
@@ -319,6 +297,13 @@ class TEventSelector extends TSelector {
                 )
             });
         }
+        if (this.branch === 'TracksToMCParticles') {
+            this.branchData.push({
+                TracksToMCParticles: this.getTracksToMCParticles(
+                    this.tgtobj['TracksToMCParticles']
+                )
+            });
+        }
         if (this.branch === 'PIDLikelihoods') {
             this.branchData.push({
                 PIDLikelihoods: this.getPIDLikelihoods(
@@ -355,6 +340,9 @@ export class EventLoader extends PhoenixLoader {
             'Tracks',
             'TrackFitResults',
             'TracksToPIDLikelihoods',
+            'TracksToMCParticles',
+            'TracksToMCParticles',
+            'TracksToMCParticles',
             'PIDLikelihoods',
             'MCParticles',
             'EventMetaData'
@@ -460,17 +448,22 @@ export class EventLoader extends PhoenixLoader {
             for (let j = 0; j < eventData['Tracks'].length; j++) {
                 const trackFitIndex = eventData['Tracks'][j]['trackFitIndex'];
                 const PIDIndex = eventData['TracksToPIDLikelihoods'][j];
+                const MCParticleIndex = eventData['TracksToMCParticles'][j];
                 eventData['Tracks'][j] = {
                     ...eventData['Tracks'][j],
                     pos: this.getTrackPos(
                         eventData['TrackFitResults'][trackFitIndex]
                     ),
                     ...eventData['TrackFitResults'][trackFitIndex],
-                    ...eventData['PIDLikelihoods'][PIDIndex]
+                    ...eventData['PIDLikelihoods'][PIDIndex],
+                    MCParticleIndex
+                };
+                eventData['MCParticles'][MCParticleIndex] = {
+                    ...eventData['MCParticles'][MCParticleIndex],
+                    trackIndex: j
                 };
             }
         }
-
         // Save fileData by input the appropriate onHandleData function
         onHandleData(this.fileData);
         return this.fileData;

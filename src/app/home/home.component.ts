@@ -7,10 +7,9 @@ import { EventDisplayService } from 'phoenix-ui-components';
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements AfterViewInit {
-
     constructor(private eventDisplay: EventDisplayService) {
         this.eventDisplay.getThreeManager().stopAnimationLoop();
-        this.eventDisplay.getUIManager().setDarkTheme(true)
+        this.eventDisplay.getUIManager().setDarkTheme(true);
     }
 
     ngAfterViewInit() {

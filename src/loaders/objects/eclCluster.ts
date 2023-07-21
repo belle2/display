@@ -47,6 +47,7 @@ export class ECLClusterObject {
         const clusterLength = eclClusterParams.energy * 120 * scale;
         const clusterWidth = 3 * scale;
         const radius = eclClusterParams.radius * scale + clusterLength * 0.3;
+        // const radius = 125 * scale / Math.sin(eclClusterParams.theta) + clusterLength * 0.5 // 125 is the approximate radial size of TOP
         const theta = eclClusterParams.theta;
         const phi = eclClusterParams.phi;
 

@@ -10,14 +10,17 @@ import { DetectorComponent } from './detector/detector.component';
 import { EventDisplayComponent } from './event-display/event-display.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoadingComponent } from './loading/loading.component';
+import { LoadingComponent } from './customized-components/loading/loading.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
-import { CustomizedEventSelectorComponent } from './customized-event-selector/customized-event-selector.component';
-import { IOEventComponent } from './io-event/io-event.component';
-import { IODialogComponent } from './io-event/io-dialog/io-dialog.component';
+
+import { CustomizedEventSelectorComponent } from './customized-components/customized-event-selector/customized-event-selector.component';
+import { IOEventComponent } from './customized-components/io-event/io-event.component';
+import { IODialogComponent } from './customized-components/io-event/io-dialog/io-dialog.component';
 import { HomeComponent } from './home/home.component';
+import { ObjectSelectorComponent } from './customized-components/object-selector/object-selector.component';
+import { ObjectSelectorOverlayComponent } from './customized-components/object-selector/object-selector-overlay/object-selector-overlay.component';
 
 @NgModule({
     declarations: [
@@ -28,7 +31,9 @@ import { HomeComponent } from './home/home.component';
         CustomizedEventSelectorComponent,
         IOEventComponent,
         IODialogComponent,
-        HomeComponent
+        HomeComponent,
+        ObjectSelectorComponent,
+        ObjectSelectorOverlayComponent
     ],
     imports: [
         BrowserModule,

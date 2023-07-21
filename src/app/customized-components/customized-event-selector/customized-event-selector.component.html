@@ -1,0 +1,42 @@
+<div class="eventSelector mx-2" *ngIf="events != null && events.length !== 0">
+    <button
+        (click)="previousEvent()"
+        matTooltip="Previous event"
+        matTooltipPosition="above"
+        class="toggle"
+    >
+        <svg class="icon">
+            <use href="assets/icons/left-arrow.svg#left-arrow"></use>
+        </svg>
+    </button>
+    <select
+        name="event"
+        (change)="changeEvent($event)"
+        matTooltip="Event selector"
+        matTooltipPosition="above"
+    >
+        <option
+            *ngFor="let event of events"
+            [value]="event"
+            [selected]="currentIndex === events.indexOf(event)"
+        >
+            {{ event }}
+        </option>
+    </select>
+    <button
+        (click)="nextEvent()"
+        matTooltip="Next event"
+        matTooltipPosition="above"
+        class="toggle"
+    >
+        <svg class="icon">
+            <use href="assets/icons/right-arrow.svg#right-arrow"></use>
+        </svg>
+    </button>
+</div>
+<div class="eventInfo" *ngIf="events != null && events.length !== 0">
+    <h6>
+        Experiment {{ experimentNum }} / Run {{ runNum }} / Event {{ eventNum }}
+    </h6>
+    <p>Date: {{ time }}</p>
+</div>
