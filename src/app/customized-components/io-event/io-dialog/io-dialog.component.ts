@@ -14,6 +14,7 @@ import {
 } from 'phoenix-ui-components';
 import { Belle2Loader } from 'src/loaders/event-data-loaders';
 import { EventLoader } from 'src/app/event-display/event-loader';
+import * as saveAs from 'file-saver';
 
 @Component({
     selector: 'app-io-dialog',
@@ -124,6 +125,31 @@ export class IODialogComponent implements OnInit {
             const belle2Loader = new Belle2Loader();
             const data = belle2Loader.getAllEventData(fileData);
             this.eventDisplay.parsePhoenixEvents(data);
+        });
+
+        this.onClose();
+    }
+
+    async handleROOTDetectorInput(files: FileList) {
+        const rootObjectName = prompt('Enter object name in ROOT file');
+
+        await this.eventDisplay.loadRootGeometry(
+            URL.createObjectURL(files[0]),
+            rootObjectName,
+            files[0].name.split('.')[0]
+        );
+
+        this.onClose();
+    }
+
+    async handleJSONConvertor(files: FileList) {
+        const eventLoader = new EventLoader(URL.createObjectURL(files[0]));
+
+        eventLoader.getData('tree', (fileData: any) => {
+            const fileToSave = new Blob([JSON.stringify(fileData)], {
+                type: 'application/json'
+            });
+            saveAs(fileToSave, 'event.json');
         });
 
         this.onClose();

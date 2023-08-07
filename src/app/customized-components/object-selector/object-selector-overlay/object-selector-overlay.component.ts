@@ -1,9 +1,6 @@
-import {
-    Component,
-    OnInit,
-    Input
-} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { EventDisplayService } from 'phoenix-ui-components';
+import { PrettySymbols } from 'phoenix-event-display';
 
 @Component({
     selector: 'app-object-selector-overlay',
@@ -50,52 +47,18 @@ export class ObjectSelectorOverlayComponent implements OnInit {
                         .update(selectedParticle.uuid);
                     // A non-smart way to update the overlay
                     this.selectedObject.name = 'MCParticle';
-                    this.selectedObject.attributes = [
-                        {
-                            attributeName: 'index',
-                            attributeValue: selectedParticle.index
-                        },
-                        {
-                            attributeName: 'name',
-                            attributeValue: selectedParticle.name
-                        },
-                        {
-                            attributeName: 'momentumX',
-                            attributeValue: selectedParticle.momentumX
-                        },
-                        {
-                            attributeName: 'momentumY',
-                            attributeValue: selectedParticle.momentumY
-                        },
-                        {
-                            attributeName: 'momentumZ',
-                            attributeValue: selectedParticle.momentumZ
-                        },
-                        {
-                            attributeName: 'Track',
-                            attributeValue: selectedParticle.Track
-                        },
-                        {
-                            attributeName: 'PDG',
-                            attributeValue: selectedParticle.PDG
-                        },
-                        {
-                            attributeName: 'seen',
-                            attributeValue: selectedParticle.seen
-                        },
-                        {
-                            attributeName: 'q',
-                            attributeValue: selectedParticle.charge
-                        },
-                        {
-                            attributeName: 'Energy',
-                            attributeValue: selectedParticle.energy
-                        },
-                        {
-                            attributeName: 'ϕ',
-                            attributeValue: selectedParticle.phi
+                    this.selectedObject.attributes = [];
+                    const prettyParams =
+                        PrettySymbols.getPrettyParams(selectedParticle);
+
+                    for (const key of Object.keys(prettyParams)) {
+                        if (key !== 'uuid') {
+                            this.selectedObject.attributes.push({
+                                attributeName: key,
+                                attributeValue: prettyParams[key]
+                            });
                         }
-                    ];
+                    }
 
                     break;
                 }
@@ -111,49 +74,17 @@ export class ObjectSelectorOverlayComponent implements OnInit {
             this.eventDisplay.getActiveObjectId().update(selectedTrack.uuid);
             // A non-smart way to update the overlay
             this.selectedObject.name = 'Track';
-            this.selectedObject.attributes = [
-                { attributeName: 'index', attributeValue: selectedTrack.index },
-                { attributeName: 'd0', attributeValue: selectedTrack.d0 },
-                { attributeName: 'z0', attributeValue: selectedTrack.z0 },
-                { attributeName: 'omega', attributeValue: selectedTrack.omega },
-                {
-                    attributeName: 'tanLambda',
-                    attributeValue: selectedTrack.tanLambda
-                },
-                {
-                    attributeName: 'momentumX',
-                    attributeValue: selectedTrack.momentumX
-                },
-                {
-                    attributeName: 'momentumY',
-                    attributeValue: selectedTrack.momentumY
-                },
-                {
-                    attributeName: 'momentumZ',
-                    attributeValue: selectedTrack.momentumZ
-                },
-                {
-                    attributeName: 'MCParticle',
-                    attributeValue: selectedTrack.MCParticle
-                },
-                { attributeName: 'e-', attributeValue: selectedTrack?.['e-'] },
-                {
-                    attributeName: 'mu-',
-                    attributeValue: selectedTrack?.['mu-']
-                },
-                {
-                    attributeName: 'pi+',
-                    attributeValue: selectedTrack?.['pi+']
-                },
-                { attributeName: 'K+', attributeValue: selectedTrack?.['K+'] },
-                { attributeName: 'p+', attributeValue: selectedTrack?.['p+'] },
-                {
-                    attributeName: 'deuteron',
-                    attributeValue: selectedTrack?.['deuteron']
-                },
-                { attributeName: 'q', attributeValue: selectedTrack.charge },
-                { attributeName: 'ϕ', attributeValue: selectedTrack.phi }
-            ];
+            this.selectedObject.attributes = [];
+            const prettyParams = PrettySymbols.getPrettyParams(selectedTrack);
+
+            for (const key of Object.keys(prettyParams)) {
+                if (key !== 'uuid') {
+                    this.selectedObject.attributes.push({
+                        attributeName: key,
+                        attributeValue: prettyParams[key]
+                    });
+                }
+            }
         }
     }
 }

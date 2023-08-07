@@ -197,7 +197,7 @@ export class Belle2Loader extends PhoenixLoader {
                         track.omega,
                         track.phi0
                     ),
-                    ...(track?.MCParticleIndex > 0 && {
+                    ...(track?.MCParticleIndex > -1 && {
                         MCParticle: track?.MCParticleIndex
                     }),
                     'e-': roundProbability(probabilities?.['e-']),
@@ -274,7 +274,7 @@ export class Belle2Loader extends PhoenixLoader {
                     momentumX: particle?.momentum_x.toPrecision(5),
                     momentumY: particle?.momentum_y.toPrecision(5),
                     momentumZ: particle?.momentum_z.toPrecision(5),
-                    ...(particle?.trackIndex > 0 && {
+                    ...(particle?.trackIndex > -1 && {
                         Track: particle.trackIndex
                     }),
                     phi: Math.atan(
