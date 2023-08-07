@@ -2,7 +2,7 @@
 
 This Angular CLI web app displays a Belle2 event using Phoenix, a TypeScript-based event display framework.
 <br>
-The web app has been deployed and can be accessed through [belle2-gsoc-2023-hieu-gsoc-draft.netlify.app](https://belle2-gsoc-2023-hieu-gsoc-draft.netlify.app/event-display)
+The web app has been deployed and can be accessed through [belle2-gsoc-2023-hieu-gsoc-draft.netlify.app](https://belle2-gsoc-2023-hieu-gsoc-draft.netlify.app/#/)
 
 In order to run the application on your local machine, please perform the following steps.
 <br>
@@ -14,9 +14,9 @@ In order to run the application on your local machine, please perform the follow
 ## How to Run
 
 1. Clone this repository to your local machine
-```git clone git@github.com:HieuLCM/Belle2_Web_Display_dum_ver.git```
+```git clone git@github.com:belle2/display.git```
 2. Change the current directory into the cloned folder
-```cd Belle2_Web_Display_dum_ver```
+```cd display```
 3. Run `npm install` to install the necessary dependencies
 4. Run `npm start` or `ng serve` to start the development server
 5. Navigate to `http://localhost:4200/` in your web browser to view the app
