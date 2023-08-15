@@ -1,4 +1,4 @@
-/* The code below is originated from phoenixExport file to change the ROOT file to */
+/* The code below is originated from phoenixExport file to convert the .root to .json */
 import * as JSROOT from 'jsroot';
 import { build } from 'jsroot/geom';
 import * as THREE from 'three';

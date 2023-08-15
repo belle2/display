@@ -69,11 +69,11 @@ export class DetectorLoader {
         // "ARICH > Envelope > Cables": [['ARICH.cablesEnvelope'], true],
 
         // TOP_Envelope
-        // "TOP_Envelope": [["TOPEnvelopeModule"], {visible: true, opacity: 0.7}]
+        // "TOP": [["TOPEnvelopeModule"], {visible: true, opacity: 0.7}]
 
-        // Section
-        // "Section > FWD": [["Section_1_1"], {visible: true, opacity: 0.3}],
-        // "Section > BWD": [["Section_2_2"], {visible: true, opacity: 0.3}],
+        // EKLM
+        // "EKLM > FWD": [["Section_1_1"], {visible: true, opacity: 0.3}],
+        // "EKLM > BWD": [["Section_2_2"], {visible: true, opacity: 0.3}],
 
         // BKLM
         // "BKLM > FWD": [["BKLM.ForwardSector"], {visible: true, opacity: 0.2}],

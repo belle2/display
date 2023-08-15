@@ -59,7 +59,7 @@ export class EventDisplayComponent implements OnInit {
 
         this.eventDisplay.init(configuration);
 
-        const response = await fetch('../../assets/mdst_data.json');
+        const response = await fetch('../../assets/event/mdst_data.json');
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -72,7 +72,7 @@ export class EventDisplayComponent implements OnInit {
         this.eventDisplay.parsePhoenixEvents(eventData);
 
         this.eventDisplay.loadGLTFGeometry(
-            '../../assets/Belle2Geo_EventDisplay.gltf',
+            '../../assets/event/Belle2Geo_EventDisplay.gltf',
             undefined,
             undefined,
             4,

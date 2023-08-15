@@ -56,7 +56,7 @@ export class DetectorComponent implements OnInit {
         this.eventDisplay.init(configuration);
 
         this.eventDisplay.loadGLTFGeometry(
-            '../../assets/Belle2Geo_BKLM.gltf',
+            '../../assets/geometry/Belle2Geo_BKLM.gltf',
             undefined,
             undefined,
             4,
@@ -64,7 +64,7 @@ export class DetectorComponent implements OnInit {
         );
 
         this.eventDisplay.loadGLTFGeometry(
-            '../../assets/Belle2Geo_Section.gltf',
+            '../../assets/geometry/Belle2Geo_EKLM.gltf',
             undefined,
             undefined,
             4,
@@ -72,7 +72,7 @@ export class DetectorComponent implements OnInit {
         );
 
         this.eventDisplay.loadGLTFGeometry(
-            '../../assets/Belle2Geo.gltf',
+            '../../assets/geometry/Belle2Geo.gltf',
             undefined,
             undefined,
             4,
@@ -80,7 +80,7 @@ export class DetectorComponent implements OnInit {
         );
 
         this.eventDisplay.loadGLTFGeometry(
-            '../../assets/Belle2Geo_ARICH.gltf',
+            '../../assets/geometry/Belle2Geo_ARICH.gltf',
             undefined,
             undefined,
             4,
@@ -88,7 +88,7 @@ export class DetectorComponent implements OnInit {
         );
 
         this.eventDisplay.loadGLTFGeometry(
-            '../../assets/Belle2Geo_Material_FWD.gltf',
+            '../../assets/geometry/Belle2Geo_Material_FWD.gltf',
             undefined,
             undefined,
             4,
@@ -96,7 +96,7 @@ export class DetectorComponent implements OnInit {
         );
 
         this.eventDisplay.loadGLTFGeometry(
-            '../../assets/Belle2Geo_Material_BWD.gltf',
+            '../../assets/geometry/Belle2Geo_Material_BWD.gltf',
             undefined,
             undefined,
             4,
@@ -104,7 +104,7 @@ export class DetectorComponent implements OnInit {
         );
 
         this.eventDisplay.loadGLTFGeometry(
-            '../../assets/Belle2Geo_Material_TOP_BWD.gltf',
+            '../../assets/geometry/Belle2Geo_Material_TOP_BWD.gltf',
             undefined,
             undefined,
             4,
@@ -112,7 +112,7 @@ export class DetectorComponent implements OnInit {
         );
 
         this.eventDisplay.loadGLTFGeometry(
-            '../../assets/Belle2Geo_Material_Barrel.gltf',
+            '../../assets/geometry/Belle2Geo_Material_Barrel.gltf',
             undefined,
             undefined,
             4,
@@ -120,7 +120,7 @@ export class DetectorComponent implements OnInit {
         );
 
         this.eventDisplay.loadGLTFGeometry(
-            '../../assets/Belle2Geo_TOP.gltf',
+            '../../assets/geometry/Belle2Geo_TOP.gltf',
             undefined,
             undefined,
             4,

@@ -218,23 +218,6 @@ export class Belle2Loader extends PhoenixLoader {
     private getMCParticles(): any {
         let particles: any = {};
         let collection: any[] = [];
-        // const pdgMap: any = {
-        //   "22": "photon",
-        //   "321": "kaon",
-        //   "-321": "kaon",
-        //   "211": "pion",
-        //   "-211": "pion",
-        //   "111": "pion",
-        //   "11": "electron",
-        //   "-11": "electron",
-        //   "13": "muon",
-        //   "-13": "muon",
-        //   "2212": "proton",
-        //   "-2212": "proton",
-        //   "411": "deuteron",
-        //   "-411": "deuteron",
-        //   "421": "deuteron"
-        // }
         const particleNames = {
             11: 'e-',
             12: 'nu_e',
