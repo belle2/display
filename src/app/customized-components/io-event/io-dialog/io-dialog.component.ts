@@ -1,10 +1,5 @@
 import { OnInit, Component, Input } from '@angular/core';
-import {
-    CMSLoader,
-    JiveXMLLoader,
-    readZipFile,
-    Edm4hepJsonLoader
-} from 'phoenix-event-display';
+import { CMSLoader, JiveXMLLoader, readZipFile } from 'phoenix-event-display';
 import { MatDialogRef } from '@angular/material/dialog';
 import {
     EventDataFormat,
@@ -12,7 +7,7 @@ import {
     ImportOption,
     EventDisplayService
 } from 'phoenix-ui-components';
-import { Belle2Loader } from 'src/loaders/event-data-loaders';
+import { Belle2Loader } from 'src/loaders/event-data-loader';
 import { EventLoader } from 'src/app/event-display/event-loader';
 import * as saveAs from 'file-saver';
 

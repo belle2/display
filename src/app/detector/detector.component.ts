@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { DetectorLoader } from './detector-loader';
 import { EventDisplayService } from 'phoenix-ui-components';
 import {
     Configuration,
     PhoenixMenuNode,
     PresetView
 } from 'phoenix-event-display';
-import { Belle2Loader } from 'src/loaders/event-data-loaders';
+import { Belle2Loader } from 'src/loaders/event-data-loader';
 
 @Component({
     selector: 'app-detector',

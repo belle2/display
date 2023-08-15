@@ -1,17 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { EventLoader } from './event-loader';
-import {
-    EventDataFormat,
-    EventDataImportOption,
-    EventDisplayService
-} from 'phoenix-ui-components';
+import { EventDisplayService } from 'phoenix-ui-components';
 import {
     Configuration,
     PhoenixMenuNode,
     PresetView
 } from 'phoenix-event-display';
-import { Belle2Loader } from 'src/loaders/event-data-loaders';
-import * as saveAs from 'file-saver';
+import { Belle2Loader } from 'src/loaders/event-data-loader';
 
 @Component({
     selector: 'app-event-display',

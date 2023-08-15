@@ -1,7 +1,7 @@
 Installation
 ============
 
-For developers, to set up the local system, please follow the steps below.
+For developers, to set up the local environment, please follow the steps below.
 
 1. **Install Node.js** on your system. You can download the latest version of Node.js from the `official website`_.
 
