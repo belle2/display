@@ -10,7 +10,7 @@ The Belle II event display web application is built using the Angular CLI. To in
 
       $ npm run build
 
-   This command generates optimized production-ready files in the `dist` directory. Move this folder to a suitable location for easier server integration.
+   This command generates optimized production-ready files in the ``dist`` directory. Move this folder to a suitable location for easier server integration.
 
 2. **Configure Apache Server:**
    Configure your Apache server to serve the app's files. Edit your Apache configuration file and add the following block:
@@ -28,7 +28,7 @@ The Belle II event display web application is built using the Angular CLI. To in
           </Directory>
       </VirtualHost>
 
-   Replace `yourdomain.com` with your actual domain name and `/path_to_app/dist` with the actual path to the Belle II app's `dist` directory.
+   Replace ``yourdomain.com`` with your actual domain name and ``/path_to_app/dist`` with the actual path to the Belle II app's ``dist`` directory.
 
 3. **Enable mod_rewrite for Routing:**
    Add the following lines to your server configuration to enable mod_rewrite for routing:
