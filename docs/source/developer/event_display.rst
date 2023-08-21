@@ -12,7 +12,7 @@ To create customized event objects (e.g., Hits), please refer to the Phoenix `ev
 
 .. _event-data-loader: https://github.com/HSF/phoenix/blob/main/guides/developers/event-data-loader.md
 
-Once you've created a customized object, you need to add it to the ``Belle2Loader`` in the ``display/src/loaders/event-data-loader.ts`` file to enable its display. You can also modify the visual of current objects by modifying that file. For more information, also refer to the Phoenix `event-data-loader`_ documentation.
+Once you've created a customized object, you need to add it to the ``Belle2Loader`` in the ``display/src/loaders/event-data-loader.ts`` file to enable its display. For more information, also refer to the Phoenix `event-data-loader`_ documentation.
 
 Additionally, Phoenix offers some `default objects`_ in its codebase. If they meet your requirements, you can integrate these objects into your display.
 
@@ -40,7 +40,7 @@ By default, the components for the web application are stored in the ``display/s
 | │   └── ...
 | └── ...
 
-Essentially, three main pages exist: the homepage, event display, and detector display, corresponding to the ``home/``, ``event-display/``, and ``detector/`` folders respectively in the ``display/src/app/`` folder. Additionally, the ``customized-components/`` folder contains all customized Phoenix components.
+Essentially, three main pages exist: the homepage, event display, and detector display, corresponding to the ``home/``, ``event-display/``, and ``detector/`` folders respectively in the ``display/src/app/`` folder. Additionally, the ``customized-components`` folder contains all customized Phoenix components.
 
 As this project is built on Phoenix, most UI components used here are obtained from ``phoenix-ui-components``, such as **Display Options** or the tools in the **UI Menu**. However, due to the unique characteristics of the Belle II event display, some tools (e.g., event selector, event import/export) need customization. To create customized components, it is essential to study existing Phoenix UI components and their usage. This is necessary because, when developing new components, you will need to seamlessly integrate them into the web framework built on Phoenix. In short, skills in handling both Angular and Phoenix are required.
 

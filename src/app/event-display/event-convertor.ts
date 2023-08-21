@@ -1,4 +1,4 @@
-import * as mdstExample from '../../assets/mdst.json';
+import * as mdstExample from '../../assets/event/mdst.json';
 import { saveAs } from 'file-saver';
 
 export function eventConvertor() {

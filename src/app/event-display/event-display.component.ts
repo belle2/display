@@ -64,7 +64,7 @@ export class EventDisplayComponent implements OnInit {
             throw new Error('Network response was not ok');
         }
 
-        // const eventLoader = new EventLoader('../../assets/mdst-v06-00-00.root');
+        // const eventLoader = new EventLoader('../../assets/event/mdst-v06-00-00.root');
 
         // const data = await eventLoader.getData('tree');
         const data = await response.json();

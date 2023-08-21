@@ -18,3 +18,4 @@ The source code for the Belle II event display project is stored in the `GitHub 
    ./developer/installation.rst
    ./developer/modules.rst
    ./developer/event_display.rst
+   ./developer/server.rst
