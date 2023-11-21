@@ -1,7 +1,7 @@
 Server Integration
 ------------------
 
-The Belle II event display web application is built using the Angular CLI. To integrate the app with the Apache server, follow these steps.
+The event display web application is built using the Angular CLI. To integrate the app with the Apache server, follow these steps.
 
 1. **Build the App:**
    Run the following command from the project directory to build the app:

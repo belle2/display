@@ -3,10 +3,12 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Belle II Event Display
-======================
+Belle II Event Display with Phoenix
+===================================
 
-**Belle II Event Display with Phoenix** is a project conducted during the Google Summer of Code 2023, aimed at providing a web-based tool for event display. The project's main objective is to enhance the usability and accessibility of Belle II results by allowing users to upload the *mdst .root* file and display the events on their browser. Both user documentation and developer documentation are included on this page.
+**Belle II Event Display with Phoenix** is a project conducted during the `Google Summer of Code 2023`_, aimed at providing a web-based tool for event display. The project's main objective is to enhance the usability and accessibility of Belle II results by allowing users to upload the mdst *.root* file and display the events on their browser. Both user documentation and developer documentation are included on this page.
+
+.. _Google Summer of Code 2023: https://hepsoftwarefoundation.org/gsoc/blogs/2023/blog_Belle2_HieuLeCongMinh.html
 
 .. toctree::
    :maxdepth: 2

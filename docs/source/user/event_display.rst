@@ -223,7 +223,7 @@ Import Events
 
     Fig 17. Import Events
 
-Clicking on the *Upload* icon will open a dialog where you can choose to import either an *mdst .root* file or a *json* file.
+Clicking on the *Upload* icon will open a dialog where you can choose to import either an mdst *.root* file or a *.json* file.
 
 Importing a *.root* file requires some calculations before the events can be displayed, which could take a long time if the file contains a large number of events and objects. If you need to display the same file multiple times, you have the option to convert the *.root* file to a *.json* file (by an external tool) and import the *.json* file instead.
 

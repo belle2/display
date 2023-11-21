@@ -1,8 +1,8 @@
-# Belle2 GSoC 2023
+# Belle II Event Display with Phoenix - GSoC 2023
 
-This Angular CLI web app displays a Belle2 event using Phoenix, a TypeScript-based event display framework.
+This Angular CLI web app displays Belle II events using Phoenix, a TypeScript-based event display framework.
 <br>
-The web app has been deployed and can be accessed through [belle2-gsoc-2023-hieu-gsoc-draft.netlify.app](https://belle2-gsoc-2023-hieu-gsoc-draft.netlify.app/#/)
+The web app has been deployed and can be accessed through [display.belle2.org](https://display.belle2.org)
 
 In order to run the application on your local machine, please perform the following steps.
 <br>
@@ -26,7 +26,7 @@ In order to run the application on your local machine, please perform the follow
 
 The web application serves as a tool that allows scientists and physicists to import events from mdst `.root` files, which contain data, and then view them directly in a web browser. By leveraging the Phoenix framework and adding custom features, the application provides a user-friendly environment for event display, complete with intuitive user interface controls.
 
-For more detailed instructions on how to use and develop the app, please refer to the [documentation](https://belle2-gsoc-2023-hieu-docs.netlify.app/).
+For more detailed instructions on how to use and develop the app, please refer to the [documentation](https://display.belle2.org/documentation).
 
 *The documentation is created using Sphinx and its source file is located in the `docs/` folder.*
 

@@ -10,7 +10,7 @@ import pathlib
 import sys
 sys.path.insert(0, pathlib.Path(__file__).parents[2].resolve().as_posix())
 
-project = 'Belle II Event Display'
+project = 'Belle II Event Display with Phoenix'
 copyright = '2023, Hieu Le Cong Minh'
 author = 'Hieu Le Cong Minh'
 release = '0.1'
@@ -31,5 +31,5 @@ exclude_patterns = []
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'sphinx_rtd_theme'
-html_static_path = ['_static']
+html_theme = 'sphinx_book_theme'
+# html_static_path = ['_static']
