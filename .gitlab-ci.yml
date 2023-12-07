@@ -1,0 +1,25 @@
+stages:
+  - build
+
+image:
+  node:20
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_PIPELINE_SOURCE == 'push' && $CI_COMMIT_BRANCH == 'main'
+
+before_script:
+  - apt-get update -y
+  - apt-get upgrade -y
+  - apt-get install -y build-essential
+
+build-job:
+  stage: build
+  script:
+    # Install angular
+    - npm install -g @angular/cli@15.2.7
+    # Install dependencies
+    - npm install
+    # Build the application
+    - npm run build
