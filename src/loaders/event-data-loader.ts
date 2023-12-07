@@ -260,8 +260,8 @@ export class Belle2Loader extends PhoenixLoader {
                     ...(particle?.trackIndex > -1 && {
                         Track: particle.trackIndex
                     }),
-                    phi: Math.atan(
-                        particle?.momentum_x / particle?.momentum_y
+                    phi: Math.atan2(
+                        particle?.momentum_x, particle?.momentum_y
                     ).toPrecision(5),
                     PDG: particle.PDG,
                     color: this.getParticleColor(particle.PDG),
