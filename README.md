@@ -1,4 +1,7 @@
-# Belle II Event Display with Phoenix - GSoC 2023
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10304032.svg)](https://doi.org/10.5281/zenodo.10304032) [![Static Badge](https://img.shields.io/badge/display-latest-009682)](https://display.belle2.org/) [![Static Badge](https://img.shields.io/badge/sphinx-latest-8cb63c)](https://display.belle2.org/documentation/) 
+
+
+# Belle II Event Display with Phoenix
 
 This Angular CLI web app displays Belle II events using Phoenix, a TypeScript-based event display framework.
 
