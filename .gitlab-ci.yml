@@ -38,7 +38,7 @@ documentation:
     expose_as: 'sphinx documentation'
   script:
     # Install python3-venv and create a virtual environment
-    - apt-install python3-venv
+    - apt-get install python3-venv
     - python3 -m venv display-env
     - source display-env/bin/activate
     # Install the requirements
