@@ -13,7 +13,7 @@ workflow:
 before_script:
   - apt-get update -y
   - apt-get upgrade -y
-  - apt-get install -y build-essential python3 python3-pip
+  - apt-get install -y build-essential
 
 build:
   stage: build
@@ -37,9 +37,11 @@ documentation:
     expire_in: 1 week
     expose_as: 'sphinx documentation'
   script:
-    # Install sphinx
-    - pip3 install sphinx
-    # Print the sphinx version (for debugging)
-    - sphinx-build --version
+    # Install python3-venv and create a virtual environment
+    - apt-install python3-venv
+    - python3 -m venv display-env
+    - source display-env/bin/activate
+    # Install the requirements
+    - pip3 install -r requirements.txt
     # Build the documentation
     - sphinx-build docs/source/ docs/build
