@@ -1,3 +1,5 @@
+# Use the same versions of sphinx and sphinx-book-theme
+# as in the latest version of the basf2 externals
+# (see https://github.com/belle2/externals)
 sphinx==4.3.2
 sphinx-book-theme==0.3.3
-sphinx-codeautolink==0.15.0
