@@ -1,5 +1,6 @@
 stages:
   - build
+  - documentation
 
 image:
   node:20
@@ -14,12 +15,31 @@ before_script:
   - apt-get upgrade -y
   - apt-get install -y build-essential
 
-build-job:
+build:
   stage: build
   script:
+    # Print the version of npm (for debugging)
+    - npm --version
     # Install angular
     - npm install -g @angular/cli@15.2.7
     # Install dependencies
     - npm install
     # Build the application
     - npm run build
+
+documentation:
+  stage: documentation
+  artifacts:
+    paths:
+      - docs/build/
+    name: "display-$CI_COMMIT_REF_NAME"
+    when: on_success
+    expire_in: 1 week
+    expose_as: 'sphinx documentation'
+  script:
+    # Install sphinx
+    - pip3 install sphinx
+    # Print the sphinx version (for debugging)
+    - sphinx-build --version
+    # Build the documentation
+    - sphinx-build docs/source/ docs/build
