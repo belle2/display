@@ -11,6 +11,7 @@ workflow:
     - if: $CI_PIPELINE_SOURCE == 'push' && $CI_COMMIT_BRANCH == 'main'
 
 before_script:
+  # Check for updates and install build-essential
   - apt-get update -y
   - apt-get upgrade -y
   - apt-get install -y build-essential
@@ -18,11 +19,12 @@ before_script:
 build:
   stage: build
   script:
-    # Print the version of npm (for debugging)
+    # Print the exact versions of node and npm
+    - node --version
     - npm --version
     # Install angular
     - npm install -g @angular/cli@15.2.7
-    # Install dependencies
+    # Install the dependencies
     - npm install
     # Build the application
     - npm run build
@@ -33,12 +35,12 @@ documentation:
     paths:
       - docs/build/
     name: "display-$CI_COMMIT_REF_NAME"
-    when: on_success
     expire_in: 1 week
     expose_as: 'sphinx documentation'
+    when: on_success
   script:
     # Install python3-venv and create a virtual environment
-    - apt-get install python3-venv
+    - apt-get install -y python3-venv
     - python3 -m venv display-env
     - source display-env/bin/activate
     # Install the requirements
