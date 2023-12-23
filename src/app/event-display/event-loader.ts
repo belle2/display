@@ -111,34 +111,16 @@ class TEventSelector extends TSelector {
                             [xe, ye, ze]
                         ];
                     } else {
-                        const deltaX = Array.from(
-                            { length: 300 },
-                            (_, i) => 0.5 + 0.5 * i
-                        );
-                        const deltaY = deltaX.map(deltaX => (deltaX * py) / px);
-                        const deltaZ = deltaX.map(
-                            (deltaX, i) =>
-                                Math.sqrt(
-                                    deltaX * deltaX + deltaY[i] * deltaY[i]
-                                ) * tanLambda
-                        );
-
-                        points.push([x0, y0, z0]);
-
-                        for (let i = 0; i < deltaX.length; i++) {
-                            const x = x0 + deltaX[i];
-                            const y = y0 + deltaY[i];
-                            const z = z0 + deltaZ[i];
-                            points.push([x, y, z]);
-
-                            if (
-                                Math.sqrt(x * x + y * y) > 200 ||
-                                z > 280 ||
-                                z < -150
-                            ) {
-                                break;
-                            }
-                        }
+                        const sz = (pz > 0) ? (280 - z0) / pz : (-150 - z0) / pz;
+                        const a = px * px + py * py;
+                        const b = 2 * (x0 * px + y0 * py);
+                        const c = x0 * x0 + y0 * y0 - 200 * 200;
+                        const sr = -0.5 * b + Math.sqrt(b * b - 4 * a * c) / a;
+                        const s = (sr < sz) ? sr : sz;
+                        points = [
+                            [x0, y0, z0],
+                            [x0 + s * px, y0 + s * py, z0 + s * pz]
+                        ];
                     }
                 } else {
                     const xa = x0 + rho * Math.cos(phi0 - Math.PI / 2);
@@ -362,30 +344,20 @@ export class EventLoader extends PhoenixLoader {
         const y0: number = d0 * Math.sin(phi0 - Math.PI / 2);
 
         if (omega === 0) {
-            const deltaX: number[] = Array.from(
-                { length: 300 },
-                (_, i) => i * 0.5
-            );
-            const deltaY: number[] = deltaX.map(
-                deltaX => deltaX * Math.tan(phi0)
-            );
-            const deltaZ: number[] = deltaX.map(
-                (deltaX, i) =>
-                    Math.sqrt(deltaX ** 2 + deltaY[i] ** 2) * tanLambda
-            );
+            const dx = Math.cos(phi0);
+            const dy = Math.sin(phi0);
+            const dz = tanLambda;
 
-            for (let i = 0; i < deltaX.length; i++) {
-                const x: number = x0 + deltaX[i];
-                const y: number = y0 + deltaY[i];
-                const z: number = z0 + deltaZ[i];
+            for (let i = 0; true; i++) {
+                const x: number = x0 + i * dx;
+                const y: number = y0 + i * dy;
+                const z: number = z0 + i * dz;
                 points.push([x, y, z]);
 
                 if (Math.sqrt(x ** 2 + y ** 2) > 130 || z > 210 || z < -100) {
                     return points;
                 }
             }
-
-            return points;
         }
 
         const rho = 1 / omega;
