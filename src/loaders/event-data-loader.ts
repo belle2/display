@@ -142,11 +142,11 @@ export class Belle2Loader extends PhoenixLoader {
         return probabilities;
     }
 
-    private getMommentumForTrack(tanLambda, omega, phi) {
+    private getMomentumForTrack(tanLambda, omega, phi) {
         return {
-            momentumX: ((0.0045 * Math.cos(phi)) / omega).toPrecision(5),
-            momentumY: ((0.0045 * Math.sin(phi)) / omega).toPrecision(5),
-            momentumZ: ((0.0045 * tanLambda) / omega).toPrecision(5)
+            momentumX: ((0.0045 * Math.cos(phi)) / Math.abs(omega)).toPrecision(5),
+            momentumY: ((0.0045 * Math.sin(phi)) / Math.abs(omega)).toPrecision(5),
+            momentumZ: ((0.0045 * tanLambda) / Math.abs(omega)).toPrecision(5)
         };
     }
 
@@ -192,7 +192,7 @@ export class Belle2Loader extends PhoenixLoader {
                     phi: track.phi0.toPrecision(5),
                     omega: track.omega.toPrecision(5),
                     tanLambda: track.tanLambda.toPrecision(5),
-                    ...this.getMommentumForTrack(
+                    ...this.getMomentumForTrack(
                         track.tanLambda,
                         track.omega,
                         track.phi0

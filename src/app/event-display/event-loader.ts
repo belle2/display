@@ -96,7 +96,7 @@ class TEventSelector extends TSelector {
                 const pz = particle['m_momentum_z'];
 
                 let points: [number, number, number][] = [];
-                const rho = Math.sqrt(px * px + py * py) / 0.0045; // approximation and only for charge != 0
+                const rho = charge * Math.sqrt(px * px + py * py) / 0.0045; // approximation and only for charge != 0
                 const tanLambda = pz / Math.sqrt(px * px + py * py);
                 const phi0 = Math.atan2(py, px);
 
