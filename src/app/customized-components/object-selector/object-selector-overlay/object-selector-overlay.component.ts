@@ -27,7 +27,9 @@ export class ObjectSelectorOverlayComponent implements OnInit {
     highlightMCParticle(particleIndex: number) {
         const particleCollections = [
             'Charged particles',
-            'Neutral particles',
+            'Photons',
+            'Neutral hadrons',
+            'Neutrons',
             'Neutrinos',
             'Others'
         ];

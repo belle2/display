@@ -279,70 +279,75 @@ export class Belle2Loader extends PhoenixLoader {
     }
 
     private getParticleColor(pdg: number): string {
-        switch (pdg) {
-            case 22:
-                return '#ff1e1e';
-            case 321:
-            case -321:
-                return '#22ff1e';
-            case 2212:
-            case -2212:
-                return '#f213a0';
-            case 411:
-            case -411:
-            case 421:
-                return '#00FFFF';
-            case 11:
-            case -11:
-                return '#f26513';
-            case 13:
-            case -13:
-                return '#f2eb13';
-            case 211:
-            case -211:
-            case 111:
-                return '#1322f2';
-            case 12:
-            case 14:
-            case 16:
-            case -12:
-            case -14:
-            case -16:
+        switch (Math.abs(pdg)) {
+            case 12:   // electron neutrino
+            case 14:   // muon neutrino
+            case 16:   // tau neutrino
                 return '#595954';
+            case 11:   // electron
+                return '#f26513';
+            case 13:   // muon
+                return '#f2eb13';
+            case 15:   // tau
+                return '#f20013';
+            case 22:   // photon
+                return '#ff1e1e';
+            case 211:  // pion
+                return '#1322f2';
+            case 321:  // K+
+            case 130:  // K0S
+            case 310:  // K0L
+            case 3122: // Lambda
+            case 3222: // Sigma+
+            case 3212: // Sigma0
+            case 3112: // Sigma-
+            case 3322: // Xi0
+            case 3312: // Xi-
+            case 3334: // Omega-
+                return '#22ff1e';
+            case 411:  // D+
+            case 421:  // D0
+            case 431:  // Ds+
+            case 4122: // Lambdac+
+                return '#00FFFF';
+            case 2212: // proton
+                return '#f213a0';
             default:
                 return '#bdbdb5';
         }
     }
 
     private getParticleGroup(pdg: number): string {
-        switch (pdg) {
-            case 22:
-            case 2112:
-            case -2112:
-            case 130:
-            case 111:
-                return 'Neutral particles';
-            case 321:
-            case -321:
-            case 2212:
-            case -2212:
-            case 411:
-            case -411:
-            case 421:
-            case 11:
-            case -11:
-            case 13:
-            case -13:
-            case 211:
-            case -211:
-                return 'Charged particles';
-            case 12:
-            case 14:
-            case 16:
-            case -12:
-            case -14:
-            case -16:
+        switch (Math.abs(pdg)) {
+            case 12:   // electron neutrino
+            case 14:   // muon neutrino
+            case 16:   // tau neutrino
                 return 'Neutrinos';
+            case 22:   // photon
+                return 'Photons';
+            case 2112: // neutron
+                return 'Neutrons';
+            case 130:  // K0S
+            case 310:  // K0L
+            case 3122: // Lambda
+            case 3212: // Sigma0
+            case 3322: // Xi0
+            case 421:  // D0
+                return 'Neutral hadrons';
+            case 11:   // electron
+            case 13:   // muon
+            case 15:   // tau
+            case 211:  // pion
+            case 2212: // proton
+            case 321:  // K+
+            case 3222: // Sigma+
+            case 3112: // Sigma-
+            case 3312: // Xi-
+            case 3334: // Omega-
+            case 411:  // D+
+            case 431:  // Ds+
+            case 4122: // Lambdac+
+                return 'Charged particles';
             default:
                 return 'Others';
         }
