@@ -43,6 +43,6 @@ documentation:
     - python3 -m venv display-env
     - source display-env/bin/activate
     # Install the requirements
-    - pip3 install -r requirements.txt
+    - pip3 install -r requirements-docs.txt
     # Build the documentation
     - sphinx-build docs/source/ docs/build
