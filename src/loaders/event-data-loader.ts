@@ -142,11 +142,11 @@ export class Belle2Loader extends PhoenixLoader {
         return probabilities;
     }
 
-    private getMommentumForTrack(tanLambda, omega, phi) {
+    private getMomentumForTrack(tanLambda, omega, phi) {
         return {
-            momentumX: ((0.0045 * Math.cos(phi)) / omega).toPrecision(5),
-            momentumY: ((0.0045 * Math.sin(phi)) / omega).toPrecision(5),
-            momentumZ: ((0.0045 * tanLambda) / omega).toPrecision(5)
+            momentumX: ((0.0045 * Math.cos(phi)) / Math.abs(omega)).toPrecision(5),
+            momentumY: ((0.0045 * Math.sin(phi)) / Math.abs(omega)).toPrecision(5),
+            momentumZ: ((0.0045 * tanLambda) / Math.abs(omega)).toPrecision(5)
         };
     }
 
@@ -192,7 +192,7 @@ export class Belle2Loader extends PhoenixLoader {
                     phi: track.phi0.toPrecision(5),
                     omega: track.omega.toPrecision(5),
                     tanLambda: track.tanLambda.toPrecision(5),
-                    ...this.getMommentumForTrack(
+                    ...this.getMomentumForTrack(
                         track.tanLambda,
                         track.omega,
                         track.phi0
@@ -223,6 +223,8 @@ export class Belle2Loader extends PhoenixLoader {
             12: 'nu_e',
             13: 'mu-',
             14: 'nu_mu',
+            15: 'tau-',
+            16: 'nu_tau',
             22: 'gamma',
             130: 'K_L0',
             211: 'pi+',
@@ -234,6 +236,8 @@ export class Belle2Loader extends PhoenixLoader {
             '-12': 'anti-nu_e',
             '-13': 'mu+',
             '-14': 'anti-nu_mu',
+            '-15': 'tau+',
+            '-16': 'anti-nu_tau',
             '-211': 'pi-',
             321: 'K+',
             '-321': 'K-',
@@ -308,9 +312,9 @@ export class Belle2Loader extends PhoenixLoader {
             case -12:
             case -14:
             case -16:
-                return '#595954';
-            default:
                 return '#bdbdb5';
+            default:
+                return '#808080';
         }
     }
 
