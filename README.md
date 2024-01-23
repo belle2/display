@@ -1,33 +1,21 @@
-# Belle II Event Display with Phoenix - GSoC 2023
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10304032.svg)](https://doi.org/10.5281/zenodo.10304032) [![Static Badge](https://img.shields.io/badge/display-latest-009682)](https://display.belle2.org/) [![Static Badge](https://img.shields.io/badge/sphinx-latest-8cb63c)](https://display.belle2.org/documentation/) 
+
+
+# Belle II Event Display with Phoenix
 
 This Angular CLI web app displays Belle II events using Phoenix, a TypeScript-based event display framework.
-<br>
-The web app has been deployed and can be accessed through [display.belle2.org](https://display.belle2.org)
 
-In order to run the application on your local machine, please perform the following steps.
-<br>
-## Prerequisites
+The web app can be accessed through [display.belle2.org](https://display.belle2.org).
 
-1. Install Node.js and NPM on your system. You can download the latest version of Node.js from the [official website](https://nodejs.org/en/download/).
-2. Install Angular CLI globally by running the command `npm install -g @angular/cli@15.2.7`. This command will install the latest version of Angular CLI on your system.
-
-## How to Run
-
-1. Clone this repository to your local machine
-```git clone git@github.com:belle2/display.git```
-2. Change the current directory into the cloned folder
-```cd display```
-3. Run `npm install` to install the necessary dependencies
-4. Run `npm start` or `ng serve` to start the development server
-5. Navigate to `http://localhost:4200/` in your web browser to view the app
+In order to run the application on your local machine, please refer to the the [documentation](https://display.belle2.org/documentation/developer/installation.html).
 
 ## About the App
 ![image](https://github.com/HieuLCM/GSoC2023_Belle2/assets/88785267/dc08313f-03a9-4832-9713-123b554b0a10)
 
-The web application serves as a tool that allows scientists and physicists to import events from mdst `.root` files, which contain data, and then view them directly in a web browser. By leveraging the Phoenix framework and adding custom features, the application provides a user-friendly environment for event display, complete with intuitive user interface controls.
-
+The web application serves as a tool that allows physicists and non-physicists to import Belle II events from `.root` files, containing either collisions or simulated data, and view them directly in a web browser. By leveraging the Phoenix framework and adding custom features, the application provides a user-friendly environment for event display, complete with intuitive user interface controls.
+<br>
 For more detailed instructions on how to use and develop the app, please refer to the [documentation](https://display.belle2.org/documentation).
 
-*The documentation is created using Sphinx and its source file is located in the `docs/` folder.*
+The documentation is created using Sphinx and its source file is located in the [`docs/` folder](https://github.com/belle2/display/tree/main/docs).
 
-### Le Cong Minh Hieu - GSoC 2023
+### Le Cong Minh Hieu, The Belle II Collaboration - Developed as part of the [Google Summer of Code 2023](https://hepsoftwarefoundation.org/gsoc/blogs/2023/blog_Belle2_HieuLeCongMinh.html)
