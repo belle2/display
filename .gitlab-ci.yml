@@ -1,0 +1,48 @@
+stages:
+  - build
+  - documentation
+
+image:
+  node:20
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_PIPELINE_SOURCE == 'push' && $CI_COMMIT_BRANCH == 'main'
+
+before_script:
+  # Check for updates and install build-essential
+  - apt-get update -y
+  - apt-get upgrade -y
+  - apt-get install -y build-essential
+
+build:
+  stage: build
+  script:
+    # Print the exact versions of node and npm
+    - node --version
+    - npm --version
+    # Install angular
+    - npm install -g @angular/cli@15.2.7
+    # Install the dependencies
+    - npm ci
+    # Build the application
+    - npm run build
+
+documentation:
+  stage: documentation
+  artifacts:
+    paths:
+      - docs/build/
+    expire_in: 1 week
+    expose_as: 'sphinx documentation'
+    when: on_success
+  script:
+    # Install python3-venv and create a virtual environment
+    - apt-get install -y python3-venv
+    - python3 -m venv display-env
+    - source display-env/bin/activate
+    # Install the requirements
+    - pip3 install -r requirements-docs.txt
+    # Build the documentation
+    - sphinx-build docs/source/ docs/build
