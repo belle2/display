@@ -42,6 +42,8 @@ formatting:
           echo "Run locally \`npm run prettier\` and commit the formatted files."
           exit 1
       fi
+    # Stage successfully completed
+    - echo "${CI_JOB_STAGE} stage successfully completed"
 
 build:
   stage: build
@@ -52,6 +54,8 @@ build:
     - npm ci
     # Build the application
     - npm run build
+    # Stage successfully completed
+    - echo "${CI_JOB_STAGE} stage successfully completed"
 
 documentation:
   stage: documentation
@@ -70,3 +74,5 @@ documentation:
     - pip3 install -r requirements-docs.txt
     # Build the documentation
     - sphinx-build docs/source/ docs/build
+    # Stage successfully completed
+    - echo "${CI_JOB_STAGE} stage successfully completed"
