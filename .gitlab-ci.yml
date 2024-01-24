@@ -1,4 +1,5 @@
 stages:
+  - formatting
   - build
   - documentation
 
@@ -15,13 +16,35 @@ before_script:
   - apt-get update -y
   - apt-get upgrade -y
   - apt-get install -y build-essential
+  # Print the exact versions of node and npm
+  - node --version
+  - npm --version
+
+formatting:
+  stage: formatting
+  script:
+    # Install angular
+    - npm install -g @angular/cli@15.2.7
+    # Install the dependencies
+    - npm ci
+    # Run prettier
+    - npm run prettier
+    # Count how many files have been modified by prettier
+    # if any, report what to do and exit with status code 1
+    - |
+      TOUCHED_FILES=$(git diff --name-only | wc -l)
+      if [ "${TOUCHED_FILES}" -ne 0 ]; then
+          echo "The following files are not properly formatted:"
+          echo ""
+          git diff --name-only
+          echo ""
+          echo "Run locally \`npm run prettier\` and commit the formatted files."
+          exit 1
+      fi
 
 build:
   stage: build
   script:
-    # Print the exact versions of node and npm
-    - node --version
-    - npm --version
     # Install angular
     - npm install -g @angular/cli@15.2.7
     # Install the dependencies
