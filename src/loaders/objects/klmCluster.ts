@@ -12,7 +12,8 @@ const getR = (vector: THREE.Vector3) => {
 
 const getTheta = (vector: THREE.Vector3) => {
     return Math.atan2(
-        Math.sqrt(vector.x * vector.x + vector.y * vector.y), vector.z
+        Math.sqrt(vector.x * vector.x + vector.y * vector.y),
+        vector.z
     );
 };
 

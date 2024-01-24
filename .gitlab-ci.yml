@@ -1,4 +1,5 @@
 stages:
+  - formatting
   - build
   - documentation
 
@@ -15,19 +16,46 @@ before_script:
   - apt-get update -y
   - apt-get upgrade -y
   - apt-get install -y build-essential
+  # Print the exact versions of node and npm
+  - node --version
+  - npm --version
+
+formatting:
+  stage: formatting
+  rules:
+    # Run this stage only during pipelines associated to merge requests
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+  script:
+    # Install angular
+    - npm install -g @angular/cli@15.2.7
+    # Install the dependencies
+    - npm ci
+    # Run prettier
+    - npm run prettier
+    # Count how many files have been modified by prettier
+    # if any, report what to do and exit with status code 1
+    - |
+      TOUCHED_FILES=$(git diff --name-only | wc -l)
+      if [ "${TOUCHED_FILES}" -ne 0 ]; then
+          echo "The following files are not properly formatted:"
+          git diff --name-only
+          echo "Run locally \`npm run prettier\` and commit the formatted files."
+          exit 1
+      fi
+    # Stage successfully completed
+    - echo "${CI_JOB_STAGE} stage successfully completed"
 
 build:
   stage: build
   script:
-    # Print the exact versions of node and npm
-    - node --version
-    - npm --version
     # Install angular
     - npm install -g @angular/cli@15.2.7
     # Install the dependencies
     - npm ci
     # Build the application
     - npm run build
+    # Stage successfully completed
+    - echo "${CI_JOB_STAGE} stage successfully completed"
 
 documentation:
   stage: documentation
@@ -46,3 +74,5 @@ documentation:
     - pip3 install -r requirements-docs.txt
     # Build the documentation
     - sphinx-build docs/source/ docs/build
+    # Stage successfully completed
+    - echo "${CI_JOB_STAGE} stage successfully completed"
