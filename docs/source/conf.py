@@ -13,7 +13,7 @@ sys.path.insert(0, pathlib.Path(__file__).parents[2].resolve().as_posix())
 project = 'Belle II Event Display with Phoenix'
 copyright = '2023, Hieu Le Cong Minh'
 author = 'Hieu Le Cong Minh'
-release = 'v0.1.0'
+release = 'v0.2.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
