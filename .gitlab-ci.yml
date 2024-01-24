@@ -23,7 +23,7 @@ before_script:
 formatting:
   stage: formatting
   rules:
-    # Run this stage only during pipelines assoicated to merge requests
+    # Run this stage only during pipelines associated to merge requests
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
   script:
     # Install angular
