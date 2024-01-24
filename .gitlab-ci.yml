@@ -22,10 +22,9 @@ before_script:
 
 formatting:
   stage: formatting
-  workflow:
-    rules:
-      # Run this stage only during pipelines assoicated to merge requests
-      - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+  rules:
+    # Run this stage only during pipelines assoicated to merge requests
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
   script:
     # Install angular
     - npm install -g @angular/cli@15.2.7
