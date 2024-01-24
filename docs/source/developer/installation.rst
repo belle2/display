@@ -5,7 +5,7 @@ Installation
 
 For developers, to set up the local environment, please follow the steps below.
 
-1. **Install Node.js** on your system. You can download the latest version of Node.js from the
+1. Install **Node.js** on your system. You can download the latest version of Node.js from the
    `official website`_.
 
    Note that the recommended version of Angular CLI (see below) requires a minimum Node.js version
@@ -14,13 +14,13 @@ For developers, to set up the local environment, please follow the steps below.
 .. _official website: https://nodejs.org/en/download
 
 
-2. **Install Angular CLI** globally by running the following command:
+2. Install **Angular CLI** globally:
    
    .. code-block:: console
 
       $ npm install -g @angular/cli@15.2.7
 
-3. **Clone the git repository** by running the following command:
+3. Clone the Git repository:
    
    .. code-block:: console
 
@@ -32,8 +32,18 @@ For developers, to set up the local environment, please follow the steps below.
 
       $ cd display
 
-5. Run ``npm install`` to install the necessary dependencies.
+5. Install the necessary dependencies:
 
-6. Run ``npm start`` or ``ng serve`` to start the development server.
+   .. code-block:: console
 
-7. Navigate to ``http://localhost:4200/`` in your web browser to view the application.
+      $ npm ci
+
+6. Start the development server:
+
+   .. code-block:: console
+
+      $ npm start
+
+7. Navigate to ``http://localhost:4200/`` in your web browser to view the application. In case the
+   port ``4200`` is already used by other services, the application reports which port to use via
+   log message.
