@@ -22,6 +22,10 @@ before_script:
 
 formatting:
   stage: formatting
+  workflow:
+    rules:
+      # Run this stage only during pipelines assoicated to merge requests
+      - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
   script:
     # Install angular
     - npm install -g @angular/cli@15.2.7
@@ -35,9 +39,7 @@ formatting:
       TOUCHED_FILES=$(git diff --name-only | wc -l)
       if [ "${TOUCHED_FILES}" -ne 0 ]; then
           echo "The following files are not properly formatted:"
-          echo ""
           git diff --name-only
-          echo ""
           echo "Run locally \`npm run prettier\` and commit the formatted files."
           exit 1
       fi
