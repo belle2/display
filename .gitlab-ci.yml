@@ -26,6 +26,8 @@ formatting:
     # Run this stage only during pipelines associated to merge requests
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
   script:
+    # Start the job
+    - echo "Running job \"${CI_JOB_NAME}\" with the image \"${CI_JOB_IMAGE}\"..."
     # Install angular
     - npm install -g @angular/cli@15.2.7
     # Install the dependencies
@@ -42,20 +44,26 @@ formatting:
           echo "Run locally \`npm run prettier\` and commit the formatted files."
           exit 1
       fi
-    # Stage successfully completed
-    - echo "${CI_JOB_STAGE} stage successfully completed"
+    # Job successfully completed
+    - echo "Successfully completed job \"${CI_JOB_NAME}\" with the image \"${CI_JOB_IMAGE}\""
 
 build:
   stage: build
+  image: $IMAGE
+  parallel:
+    matrix:
+      - IMAGE: ['node:16', 'node:18', 'node:20']
   script:
+    # Start the job
+    - echo "Running job \"${CI_JOB_NAME}\" with the image \"${CI_JOB_IMAGE}\"..."
     # Install angular
     - npm install -g @angular/cli@15.2.7
     # Install the dependencies
     - npm ci
     # Build the application
     - npm run build
-    # Stage successfully completed
-    - echo "${CI_JOB_STAGE} stage successfully completed"
+    # Job successfully completed
+    - echo "Successfully completed job \"${CI_JOB_NAME}\" with the image \"${CI_JOB_IMAGE}\""
 
 documentation:
   stage: documentation
@@ -66,6 +74,8 @@ documentation:
     expose_as: 'sphinx documentation'
     when: on_success
   script:
+    # Start the job
+    - echo "Running job \"${CI_JOB_NAME}\" with the image \"${CI_JOB_IMAGE}\"..."
     # Install python3-venv and create a virtual environment
     - apt-get install -y python3-venv
     - python3 -m venv display-env
@@ -74,5 +84,5 @@ documentation:
     - pip3 install -r requirements-docs.txt
     # Build the documentation
     - sphinx-build docs/source/ docs/build
-    # Stage successfully completed
-    - echo "${CI_JOB_STAGE} stage successfully completed"
+    # Job successfully completed
+    - echo "Successfully completed job \"${CI_JOB_NAME}\" with the image \"${CI_JOB_IMAGE}\""
