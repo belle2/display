@@ -19,3 +19,4 @@ The source code for the Belle II Event Display with Phoenix project is stored in
    ./developer/modules.rst
    ./developer/event_display.rst
    ./developer/server.rst
+   ./developer/documentation.rst
