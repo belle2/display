@@ -52,7 +52,7 @@ build:
   image: $IMAGE
   parallel:
     matrix:
-      - IMAGE: ['node:16', 'node:18', 'node:20']
+      - IMAGE: ['node:14', 'node:16', 'node:18', 'node:20']
   script:
     # Start the job
     - echo "Running job \"${CI_JOB_NAME}\" with the image \"${CI_JOB_IMAGE}\"..."
