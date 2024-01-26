@@ -3,22 +3,22 @@ stages:
   - build
   - documentation
 
-image:
-  node:20
-
 workflow:
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
     - if: $CI_PIPELINE_SOURCE == 'push' && $CI_COMMIT_BRANCH == 'main'
 
-before_script:
-  # Check for updates and install build-essential
-  - apt-get update -y
-  - apt-get upgrade -y
-  - apt-get install -y build-essential
-  # Print the exact versions of node and npm
-  - node --version
-  - npm --version
+default:
+  image: node:20
+  interruptible: true  # All the jobs can be interrupted by newer pipelines
+  before_script:
+    # Check for updates and install build-essential
+    - apt-get update -y
+    - apt-get upgrade -y
+    - apt-get install -y build-essential
+    # Print the exact versions of node and npm
+    - node --version
+    - npm --version
 
 formatting:
   stage: formatting
@@ -49,10 +49,11 @@ formatting:
 
 build:
   stage: build
+  # Run this job using multiple node images
   image: $IMAGE
   parallel:
     matrix:
-      - IMAGE: ['node:16', 'node:18', 'node:20']
+      - IMAGE: ['node:16', 'node:18', 'node:20']  # All the images we want to use
   script:
     # Start the job
     - echo "Running job \"${CI_JOB_NAME}\" with the image \"${CI_JOB_IMAGE}\"..."
