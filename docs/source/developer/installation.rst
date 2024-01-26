@@ -9,7 +9,7 @@ For developers, to set up the local environment, please follow the steps below.
    `official website`_.
 
    Note that the recommended version of Angular CLI (see below) requires a minimum Node.js version
-   of v14.20, v16.30, v18.10 or v20.0.
+   of v16.30, v18.10 or v20.0.
 
 .. _official website: https://nodejs.org/en/download
 
