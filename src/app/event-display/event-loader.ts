@@ -394,8 +394,12 @@ export class EventLoader extends PhoenixLoader {
 
         const file = await openFile(this.fileURL);
         const tree = await file.readObject(treeName);
-        const existingBranches = tree.fBranches.arr.map((branch: any) => branch.fName);
-        this.branches = this.branches.filter((branch: string) => existingBranches.includes(branch))
+        const existingBranches = tree.fBranches.arr.map(
+            (branch: any) => branch.fName
+        );
+        this.branches = this.branches.filter((branch: string) =>
+            existingBranches.includes(branch)
+        );
         this.entries = tree.fEntries;
 
         // Use Promise.all and map to wait for all promises to resolve.
