@@ -394,7 +394,12 @@ export class EventLoader extends PhoenixLoader {
 
         const file = await openFile(this.fileURL);
         const tree = await file.readObject(treeName);
-        // this.branches = tree.fBranches.arr.map((branch: any) => branch.fName);
+        const existingBranches = tree.fBranches.arr.map(
+            (branch: any) => branch.fName
+        );
+        this.branches = this.branches.filter((branch: string) =>
+            existingBranches.includes(branch)
+        );
         this.entries = tree.fEntries;
 
         // Use Promise.all and map to wait for all promises to resolve.
@@ -420,7 +425,10 @@ export class EventLoader extends PhoenixLoader {
             for (let j = 0; j < eventData['Tracks'].length; j++) {
                 const trackFitIndex = eventData['Tracks'][j]['trackFitIndex'];
                 const PIDIndex = eventData['TracksToPIDLikelihoods'][j];
-                const MCParticleIndex = eventData['TracksToMCParticles'][j];
+                let MCParticleIndex = -1;
+                if ('TracksToMCParticles' in eventData) {
+                    MCParticleIndex = eventData['TracksToMCParticles'][j];
+                }
                 eventData['Tracks'][j] = {
                     ...eventData['Tracks'][j],
                     pos: this.getTrackPos(
@@ -430,10 +438,12 @@ export class EventLoader extends PhoenixLoader {
                     ...eventData['PIDLikelihoods'][PIDIndex],
                     MCParticleIndex
                 };
-                eventData['MCParticles'][MCParticleIndex] = {
-                    ...eventData['MCParticles'][MCParticleIndex],
-                    trackIndex: j
-                };
+                if (MCParticleIndex >= 0) {
+                    eventData['MCParticles'][MCParticleIndex] = {
+                        ...eventData['MCParticles'][MCParticleIndex],
+                        trackIndex: j
+                    };
+                }
             }
         }
         // Save fileData by input the appropriate onHandleData function

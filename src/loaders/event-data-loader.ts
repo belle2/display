@@ -247,7 +247,7 @@ export class Belle2Loader extends PhoenixLoader {
             '-321': 'K-',
             '-2212': 'anti-p-'
         };
-        this.data?.MCParticles.forEach((particle: any, index: number) => {
+        this.data?.MCParticles?.forEach((particle: any, index: number) => {
             if (particle?.seen !== '0' && particle?.seen?.length) {
                 const groupName = this.getParticleGroup(particle.PDG);
                 if (!collection.includes(groupName)) {
